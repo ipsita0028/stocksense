@@ -25,4 +25,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('owner/', owner_required(TemplateView.as_view(template_name='owner.html')), name='owner'),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('categories/', include('inventory.urls')),
+    path('inventory/', include('inventory.urls')),
 ]

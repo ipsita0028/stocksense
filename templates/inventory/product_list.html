@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex justify-content-between mb-3">
+  <h3>Products</h3>
+  <a href="{% url 'product_add' %}" class="btn btn-dark">+ Add</a>
+</div>
+<table class="table bg-white">
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Cost</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th></th>
+  </tr>
+  {% for p in object_list %}
+  <tr>
+    <td>{{ p.name }}</td>
+    <td>{{ p.category }}</td>
+    <td>{{ p.cost_price }}</td>
+    <td>{{ p.selling_price }}</td>
+    <td>
+      {{ p.stock }} {% if p.is_low %}
+      <span class="badge bg-danger">Low</span>
+      {% endif %}
+    </td>
+    <td class="text-end">
+      <a href="{% url 'product_edit' p.pk %}">Edit</a> |
+      <a href="{% url 'product_delete' p.pk %}" class="text-danger">Delete</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="6">No products yet.</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

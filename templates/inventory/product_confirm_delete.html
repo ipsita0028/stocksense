@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<div class="col-md-5 mx-auto card shadow-sm card-body">
+  <h5>Delete "{{ object }}"?</h5>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'product_list' %}" class="btn btn-light">Cancel</a>
+  </form>
+</div>
+{% endblock %}
