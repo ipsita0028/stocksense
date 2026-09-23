@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex justify-content-between mb-3">
+  <h3>Bills</h3>
+  <a href="{% url 'bill_add' %}" class="btn btn-dark">+ New Bill</a>
+</div>
+<table class="table bg-white">
+  <tr>
+    <th>#</th>
+    <th>Customer</th>
+    <th>Type</th>
+    <th>Total</th>
+    <th>Date</th>
+  </tr>
+  {% for b in object_list %}
+  <tr>
+    <td><a href="{% url 'bill_detail' b.pk %}">{{ b.pk }}</a></td>
+    <td>{{ b.customer|default:"Walk-in" }}</td>
+    <td>{{ b.get_payment_type_display }}</td>
+    <td>{{ b.total }}</td>
+    <td>{{ b.created_on|date:"d-m-Y H:i" }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="5">No bills yet.</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

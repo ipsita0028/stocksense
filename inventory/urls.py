@@ -10,4 +10,13 @@ urlpatterns = [
     path('products/add/', views.ProductCreate.as_view(), name='product_add'),
     path('products/<int:pk>/edit/', views.ProductUpdate.as_view(), name='product_edit'),
     path('products/<int:pk>/delete/', views.ProductDelete.as_view(), name='product_delete'),
+    path('stock/add/', views.StockEntryCreate.as_view(), name='stock_add'),
+    path('customers/', views.CustomerList.as_view(), name='customer_list'),
+    path('customers/add/', views.CustomerCreate.as_view(), name='customer_add'),
+    path('customers/<int:pk>/edit/', views.CustomerUpdate.as_view(), name='customer_edit'),
+    path('customers/<int:pk>/delete/', views.CustomerDelete.as_view(), name='customer_delete'),
+    path('bills/', views.BillList.as_view(), name='bill_list'),
+    path('bills/new/', views.BillCreate.as_view(), name='bill_add'),
+    path('bills/<int:pk>/', views.BillDetail.as_view(), name='bill_detail'),
+    path('bills/<int:bill_id>/add-item/', views.BillItemCreate.as_view(), name='billitem_add'),
 ]

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<h3>Bill #{{ object.pk }}</h3>
+<p>
+  Customer: {{ object.customer|default:"Walk-in" }} | Type: {{
+  object.get_payment_type_display }}
+</p>
+<table class="table bg-white">
+  <tr>
+    <th>Product</th>
+    <th>Qty</th>
+    <th>Price</th>
+    <th>Subtotal</th>
+  </tr>
+  {% for item in object.billitem_set.all %}
+  <tr>
+    <td>{{ item.product }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ item.price }}</td>
+    <td>{{ item.subtotal }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<p>
+  Customer: {{ object.customer|default:"Walk-in" }} | Type: {{
+  object.get_payment_type_display }}
+</p>
+<a href="{% url 'billitem_add' object.pk %}" class="btn btn-dark">+ Add Item</a>
+{% endblock %}

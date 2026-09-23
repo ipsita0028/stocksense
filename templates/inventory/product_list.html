@@ -3,6 +3,23 @@
   <h3>Products</h3>
   <a href="{% url 'product_add' %}" class="btn btn-dark">+ Add</a>
 </div>
+<form method="get" class="row g-2 mb-3">
+  <div class="col-auto">
+    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Search by name">
+  </div>
+  <div class="col-auto">
+    <select name="category" class="form-select">
+      <option value="">All categories</option>
+      {% for c in categories %}
+        <option value="{{ c.id }}" {% if request.GET.category == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-dark">Filter</button>
+    <a href="{% url 'product_list' %}" class="btn btn-light">Clear</a>
+  </div>
+</form>
 <table class="table bg-white">
   <tr>
     <th>Name</th>
